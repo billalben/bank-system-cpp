@@ -301,4 +301,9 @@ public:
   {
     return clsBankClient(enMode::AddNewMode, "", "", "", "", AccountNumber, "", 0);
   }
+
+  static vector<clsBankClient> GetClientList()
+  {
+    return _LoadClientsDataFromFile();
+  }
 };
