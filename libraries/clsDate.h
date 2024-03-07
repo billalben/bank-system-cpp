@@ -277,7 +277,6 @@ public:
 
   string DayShortName()
   {
-
     string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
     return arrDayNames[DayOfWeekOrder(_Day, _Month, _Year)];
@@ -308,8 +307,7 @@ public:
     NumberOfDays = NumberOfDaysInAMonth(Month, Year);
 
     // Print the current month name
-    printf("\n  _______________%s_______________\n\n",
-           MonthShortName(Month).c_str());
+    printf("\n  _______________%s_______________\n\n", MonthShortName(Month).c_str());
 
     // Print the columns
     printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
@@ -345,9 +343,7 @@ public:
     printf("  _________________________________\n");
 
     for (int i = 1; i <= 12; i++)
-    {
       PrintMonthCalendar(i, Year);
-    }
   }
 
   void PrintYearCalendar()
@@ -360,9 +356,7 @@ public:
     short TotalDays = 0;
 
     for (int i = 1; i <= Month - 1; i++)
-    {
       TotalDays += NumberOfDaysInAMonth(i, Year);
-    }
 
     TotalDays += Day;
 
@@ -541,9 +535,8 @@ public:
   static clsDate IncreaseDateByOneWeek(clsDate &Date)
   {
     for (int i = 1; i <= 7; i++)
-    {
       Date = AddOneDay(Date);
-    }
+
     return Date;
   }
 
@@ -555,9 +548,8 @@ public:
   clsDate IncreaseDateByXWeeks(short Weeks, clsDate &Date)
   {
     for (short i = 1; i <= Weeks; i++)
-    {
       Date = IncreaseDateByOneWeek(Date);
-    }
+
     return Date;
   }
 
@@ -574,18 +566,14 @@ public:
       Date.SetYear(Date.GetYear() + 1);
     }
     else
-    {
       Date.SetMonth(Date.GetMonth() + 1);
-    }
 
     // last check day in date should not exceed max days in the current month
     //  example if date is 31/1/2022 increasing one month should not be 31/2/2022, it should
     //  be 28/2/2022
     short NumberOfDaysInCurrentMonth = NumberOfDaysInAMonth(Date.GetMonth(), Date.GetYear());
     if (Date.GetDay() > NumberOfDaysInCurrentMonth)
-    {
       Date.SetDay(NumberOfDaysInCurrentMonth);
-    }
 
     return Date;
   }
@@ -598,9 +586,8 @@ public:
   clsDate IncreaseDateByXDays(short Days, clsDate &Date)
   {
     for (short i = 1; i <= Days; i++)
-    {
       Date = AddOneDay(Date);
-    }
+
     return Date;
   }
 
@@ -612,9 +599,8 @@ public:
   clsDate IncreaseDateByXMonths(short Months, clsDate &Date)
   {
     for (short i = 1; i <= Months; i++)
-    {
       Date = IncreaseDateByOneMonth(Date);
-    }
+
     return Date;
   }
 
@@ -704,15 +690,12 @@ public:
       }
       else
       {
-
         Date.SetMonth(Date.GetMonth() - 1);
         Date.SetDay(NumberOfDaysInAMonth(Date.GetMonth(), Date.GetYear()));
       }
     }
     else
-    {
       Date.SetDay(Date.GetDay() - 1);
-    }
 
     return Date;
   }
@@ -725,9 +708,8 @@ public:
   static clsDate DecreaseDateByOneWeek(clsDate &Date)
   {
     for (int i = 1; i <= 7; i++)
-    {
       Date = DecreaseDateByOneDay(Date);
-    }
+
     return Date;
   }
 
@@ -739,9 +721,8 @@ public:
   static clsDate DecreaseDateByXWeeks(short Weeks, clsDate &Date)
   {
     for (short i = 1; i <= Weeks; i++)
-    {
       Date = DecreaseDateByOneWeek(Date);
-    }
+
     return Date;
   }
 
@@ -764,10 +745,9 @@ public:
     //  example if date is 31/3/2022 decreasing one month should not be 31/2/2022, it should
     //  be 28/2/2022
     short NumberOfDaysInCurrentMonth = NumberOfDaysInAMonth(Date.GetMonth(), Date.GetYear());
+
     if (Date.GetDay() > NumberOfDaysInCurrentMonth)
-    {
       Date.SetDay(NumberOfDaysInCurrentMonth);
-    }
 
     return Date;
   }
@@ -780,9 +760,8 @@ public:
   static clsDate DecreaseDateByXDays(short Days, clsDate &Date)
   {
     for (short i = 1; i <= Days; i++)
-    {
       Date = DecreaseDateByOneDay(Date);
-    }
+
     return Date;
   }
 
@@ -794,9 +773,8 @@ public:
   static clsDate DecreaseDateByXMonths(short Months, clsDate &Date)
   {
     for (short i = 1; i <= Months; i++)
-    {
       Date = DecreaseDateByOneMonth(Date);
-    }
+
     return Date;
   }
 
@@ -902,9 +880,9 @@ public:
     // Weekends are Sun,Mon,Tue,Wed and Thur
 
     /*
-  short DayIndex = DayOfWeekOrder(Date.Day, Date.Month, Date.Year);
-  return  (DayIndex >= 5 && DayIndex <= 4);
-   */
+      short DayIndex = DayOfWeekOrder(Date.Day, Date.Month, Date.Year);
+      return  (DayIndex >= 5 && DayIndex <= 4);
+    */
 
     // shorter method is to invert the IsWeekEnd: this will save updating code.
     return !IsWeekEnd(Date);

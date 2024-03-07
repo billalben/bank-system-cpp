@@ -1,31 +1,13 @@
 #include <iostream>
-#include "./libraries/clsInputValidate.h"
+#include "./important classes/clsBankClient.h"
 
 int main()
 {
-  cout << clsInputValidate::IsNumberBetween(5, 1, 10) << endl;
-  cout << clsInputValidate::IsNumberBetween(5.5, 1.3, 10.8) << endl;
+  clsBankClient Client1 = clsBankClient::Find("A101");
+  Client1.Print();
 
-  cout << clsInputValidate::IsDateBetween(clsDate(), clsDate(8, 12, 2022), clsDate(31, 12, 2022)) << endl;
+  clsBankClient Client2 = clsBankClient::Find("A101", "1234");
+  Client2.Print();
 
-  cout << clsInputValidate::IsDateBetween(clsDate(), clsDate(31, 12, 2022), clsDate(8, 12, 2022)) << endl;
-
-  cout << "\nPlease Enter a Number:\n";
-  int x = clsInputValidate::ReadIntNumber("Invalid Number, Enter again:\n");
-  cout << "x = " << x;
-
-  cout << "\nPlease Enter a Number between 1 and 5:\n";
-  int y = clsInputValidate::ReadIntNumberBetween(1, 5, "Number is not within range, enter again:\n");
-  cout << "y =  " << y;
-
-  cout << "\nPlease Enter a Double Number:\n";
-  double a = clsInputValidate::ReadDblNumber("Invalid Number, Enter again:\n");
-  cout << "a = " << a;
-
-  cout << "\nPlease Enter a Double Number between 1 and 5:\n";
-  double b = clsInputValidate::ReadDblNumberBetween(1, 5, "Number is not within range, enter again:\n");
-  cout << "b = " << b;
-
-  cout << endl;
-  cout << clsInputValidate::IsValidDate(clsDate(35, 12, 2022)) << endl;
+  cout << clsBankClient::IsClientExist("A101") << endl;
 }

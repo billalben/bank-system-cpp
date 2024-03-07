@@ -27,8 +27,7 @@ public:
   static int RandomNumber(int From, int To)
   {
     // Function to generate a random number
-    int randNum = rand() % (To - From + 1) + From;
-    return randNum;
+    return rand() % (To - From + 1) + From;
   }
 
   static char GetRandomCharacter(enCharType CharType)
@@ -43,40 +42,25 @@ public:
     switch (CharType)
     {
     case enCharType::SmallLetter:
-    {
       return char(RandomNumber(97, 122));
-      break;
-    }
     case enCharType::CapitalLetter:
-    {
       return char(RandomNumber(65, 90));
-      break;
-    }
     case enCharType::SpecialCharacter:
-    {
       return char(RandomNumber(33, 47));
-      break;
-    }
     case enCharType::Digit:
-    {
       return char(RandomNumber(48, 57));
-      break;
-    }
     default:
-    {
       return char(RandomNumber(65, 90));
-      break;
-    }
     }
   }
 
   static string GenerateWord(enCharType CharType, short Length)
   {
     string Word;
+
     for (int i = 1; i <= Length; i++)
-    {
       Word = Word + GetRandomCharacter(CharType);
-    }
+
     return Word;
   }
 
@@ -170,17 +154,13 @@ public:
   static void ShuffleArray(int arr[100], int arrLength)
   {
     for (int i = 0; i < arrLength; i++)
-    {
       Swap(arr[RandomNumber(1, arrLength) - 1], arr[RandomNumber(1, arrLength) - 1]);
-    }
   }
 
   static void ShuffleArray(string arr[100], int arrLength)
   {
     for (int i = 0; i < arrLength; i++)
-    {
       Swap(arr[RandomNumber(1, arrLength) - 1], arr[RandomNumber(1, arrLength) - 1]);
-    }
   }
 
   static string Tabs(short NumberOfTabs)
@@ -197,18 +177,16 @@ public:
   static string EncryptText(string Text, short EncryptionKey)
   {
     for (int i = 0; i <= Text.length(); i++)
-    {
       Text[i] = char((int)Text[i] + EncryptionKey);
-    }
+
     return Text;
   }
 
   static string DecryptText(string Text, short EncryptionKey)
   {
     for (int i = 0; i <= Text.length(); i++)
-    {
       Text[i] = char((int)Text[i] - EncryptionKey);
-    }
+
     return Text;
   }
 };

@@ -31,15 +31,11 @@ public:
   {
     // Date >= From && Date <= To
     if ((clsDate::IsDate1AfterDate2(Date, From) || clsDate::IsDate1EqualDate2(Date, From) && clsDate::IsDate1BeforeDate2(Date, To) || clsDate::IsDate1EqualDate2(Date, To)))
-    {
       return true;
-    }
 
     // Date >= To && Date <= From
     if ((clsDate::IsDate1AfterDate2(Date, To) || clsDate::IsDate1EqualDate2(Date, To) && clsDate::IsDate1BeforeDate2(Date, From) || clsDate::IsDate1EqualDate2(Date, From)))
-    {
       return false;
-    }
 
     return false;
   }
