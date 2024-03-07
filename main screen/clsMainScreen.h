@@ -5,6 +5,7 @@
 
 #include "../clsScreen.h"
 #include "../libraries/clsInputValidate.h"
+#include "clsClientListScreen.h"
 
 using namespace std;
 
@@ -36,20 +37,19 @@ private:
     char Choice = 'y';
     cout << "\n\nPress key 'y' to go back to main menu...";
     cin >> Choice;
-
     while (Choice != 'y')
     {
       cout << setw(37) << left << ""
            << "\nPress key 'y' to go back to main menu...";
       cin >> Choice;
     }
-
     ShowMainMenu();
   }
 
   static void _ShowAllClientsScreen()
   {
-    cout << "\nClient List Screen Will be here...\n";
+    // cout << "\nClient List Screen Will be here...\n";
+    clsClientListScreen::ShowClientsList();
   }
 
   static void _ShowAddNewClientsScreen()
