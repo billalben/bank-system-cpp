@@ -33,6 +33,73 @@ private:
                           vClientData[3], vClientData[4], vClientData[5], stod(vClientData[6]));
   }
 
+  static string _ConvertClientObjectToLine(clsBankClient Client, string Separator = "#//#")
+  {
+    string stClientRecord = "";
+    stClientRecord += Client.GetFirstName() + Separator;
+    stClientRecord += Client.GetLastName() + Separator;
+    stClientRecord += Client.GetEmail() + Separator;
+    stClientRecord += Client.GetPhone() + Separator;
+    stClientRecord += Client.AccountNumber() + Separator;
+    stClientRecord += Client.GetPinCode() + Separator;
+    stClientRecord += to_string(Client.GetAccountBalance());
+
+    return stClientRecord;
+  }
+
+  static vector<clsBankClient> _LoanClientsDataFromFile()
+  {
+    vector<clsBankClient> vClients;
+
+    fstream MyFile;
+    MyFile.open("Clients.txt", ios::in); // read mode
+
+    if (MyFile.is_open())
+    {
+      string Line;
+      while (getline(MyFile, Line))
+      {
+        clsBankClient Client = _ConvertLineToClientObject(Line);
+        vClients.push_back(Client);
+      }
+      MyFile.close();
+    }
+    return vClients;
+  }
+
+  static void _SaveClientsDataToFile(vector<clsBankClient> vClients)
+  {
+    fstream MyFile;
+    MyFile.open("Clients.txt", ios::out); // overwrite
+
+    string DataLine;
+    while (MyFile.is_open())
+    {
+      for (clsBankClient C : vClients)
+      {
+        DataLine = _ConvertClientObjectToLine(C);
+        MyFile << DataLine << endl;
+      }
+      MyFile.close();
+    }
+  }
+
+  void _Update()
+  {
+    vector<clsBankClient> _vClients;
+    _vClients = _LoanClientsDataFromFile();
+
+    for (clsBankClient &C : _vClients)
+    {
+      if (C.AccountNumber() == AccountNumber())
+      {
+        C = *this;
+        break;
+      }
+    }
+    _SaveClientsDataToFile(_vClients);
+  }
+
   static clsBankClient _GetEmptyClientObject()
   {
     return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
@@ -116,6 +183,8 @@ public:
 
   static clsBankClient Find(string AccountNumber, string PinCode)
   {
+    vector<clsBankClient> vClients;
+
     fstream MyFile;
     MyFile.open("Clients.txt", ios::in); // Read Mode
 
@@ -140,5 +209,29 @@ public:
   {
     clsBankClient Client1 = clsBankClient::Find(AccountNumber);
     return (!Client1.IsEmpty());
+  }
+
+  enum enSaveResults
+  {
+    svFailEmptyObject = 0,
+    svSucceeded = 1
+  };
+
+  enSaveResults Save()
+  {
+    switch (_Mode)
+    {
+    case enMode::EmptyMode:
+      return enSaveResults::svFailEmptyObject;
+
+    case enMode::UpdateMode:
+    {
+      _Update();
+      return enSaveResults::svSucceeded;
+    }
+
+    default:
+      break;
+    }
   }
 };
