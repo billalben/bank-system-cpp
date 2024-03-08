@@ -9,6 +9,7 @@
 #include "clsAddNewClientScreen.h"
 #include "clsDeleteClientScreen.h"
 #include "clsUpdateClientScreen.h"
+#include "clsFindClientScreen.h"
 
 using namespace std;
 
@@ -40,6 +41,8 @@ private:
     char Choice = 'y';
     cout << "\n\nPress key 'y' to go back to main menu... ";
     cin >> Choice;
+
+    Choice = tolower(Choice);
     while (Choice != 'y')
     {
       cout << setw(37) << left << ""
@@ -75,7 +78,8 @@ private:
 
   static void _ShowFindClientScreen()
   {
-    cout << "\nFind Client Screen Will be here...\n";
+    // cout << "\nFind Client Screen Will be here...\n";
+    clsFindClientScreen::ShowFindClientScreen();
   }
 
   static void _ShowTransactionsMenu()
