@@ -7,6 +7,7 @@
 #include "../libraries/clsInputValidate.h"
 #include "clsClientListScreen.h"
 #include "clsAddNewClientScreen.h"
+#include "clsDeleteClientScreen.h"
 
 using namespace std;
 
@@ -36,12 +37,12 @@ private:
   static void _GoBackToMainMenu()
   {
     char Choice = 'y';
-    cout << "\n\nPress key 'y' to go back to main menu...";
+    cout << "\n\nPress key 'y' to go back to main menu... ";
     cin >> Choice;
     while (Choice != 'y')
     {
       cout << setw(37) << left << ""
-           << "\nPress key 'y' to go back to main menu...";
+           << "\nPress key 'y' to go back to main menu... ";
       cin >> Choice;
     }
     ShowMainMenu();
@@ -61,7 +62,8 @@ private:
 
   static void _ShowDeleteClientScreen()
   {
-    cout << "\nDelete Client Screen Will be here...\n";
+    // cout << "\nDelete Client Screen Will be here...\n";
+    clsDeleteClientScreen::ShowDeleteClientScreen();
   }
 
   static void _ShowUpdateClientScreen()
