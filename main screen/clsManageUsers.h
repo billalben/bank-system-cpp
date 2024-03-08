@@ -5,6 +5,7 @@
 
 #include "../clsScreen.h"
 #include "../libraries/clsInputValidate.h"
+#include "../manage users screen/clsUsersListScreen.h"
 
 using namespace std;
 
@@ -31,12 +32,14 @@ private:
   static void _GoBackToManageUsersMenu()
   {
     char Choice = 'y';
-    cout << "\n\nPress key 'y' to go back to Manage Users menu...";
+    cout << "\n\nPress key 'y' to go back to Manage Users menu... ";
     cin >> Choice;
+    Choice = tolower(Choice);
+
     while (Choice != 'y')
     {
       cout << setw(37) << left << ""
-           << "\nPress key 'y' to go back to Manage Users menu...";
+           << "\nPress key 'y' to go back to Manage Users menu... ";
       cin >> Choice;
     }
     ShowManageUsersMenu();
@@ -44,7 +47,8 @@ private:
 
   static void _ShowListUsersScreen()
   {
-    cout << "\nList Users Screen Will Be Here.\n";
+    // cout << "\nList Users Screen Will Be Here.\n";
+    clsListUsersScreen::ShowUsersList();
   }
 
   static void _ShowAddNewUserScreen()
@@ -69,7 +73,6 @@ private:
 
   static void _PerformManageUsersMenuOption(enManageUsersMenuOptions ManageUsersMenuOption)
   {
-
     switch (ManageUsersMenuOption)
     {
     case enManageUsersMenuOptions::eListUsers:
@@ -127,7 +130,7 @@ public:
     _DrawScreenHeader("\t Manage Users Screen");
 
     cout << "===========================================\n";
-    cout << "\t\t  Manage Users Menu\n";
+    cout << "\t  Manage Users Menu\n";
     cout << "===========================================\n";
     cout << "\t[1] List Users.\n";
     cout << "\t[2] Add New User.\n";
