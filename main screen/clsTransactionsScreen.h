@@ -8,6 +8,7 @@
 
 #include "../transactions screen/clsDepositScreen.h"
 #include "../transactions screen/clsWithdrawScreen.h"
+#include "../transactions screen/clsTotalBalancesScreen.h"
 
 using namespace std;
 
@@ -43,7 +44,8 @@ private:
 
   static void _ShowTotalBalancesScreen()
   {
-    cout << "\n Balances Screen will be here.\n";
+    // cout << "\n Balances Screen will be here.\n";
+    clsTotalBalancesScreen::ShowTotalBalances();
   }
 
   static void _GoBackToTransactionsMenu()
