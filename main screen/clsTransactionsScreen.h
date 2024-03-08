@@ -7,6 +7,7 @@
 #include "../libraries/clsInputValidate.h"
 
 #include "../transactions screen/clsDepositScreen.h"
+#include "../transactions screen/clsWithdrawScreen.h"
 
 using namespace std;
 
@@ -36,7 +37,8 @@ private:
 
   static void _ShowWithdrawScreen()
   {
-    cout << "\n Withdraw Screen will be here.\n";
+    // cout << "\n Withdraw Screen will be here.\n";
+    clsWithdrawScreen::ShowWithdrawScreen();
   }
 
   static void _ShowTotalBalancesScreen()
