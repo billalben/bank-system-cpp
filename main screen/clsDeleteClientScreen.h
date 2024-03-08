@@ -51,6 +51,8 @@ public:
     char Answer = 'n';
     cin >> Answer;
 
+    Answer = tolower(Answer);
+
     if (Answer == 'y' || Answer == 'Y')
     {
       if (Client1.Delete())
