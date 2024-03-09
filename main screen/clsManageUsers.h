@@ -8,6 +8,7 @@
 #include "../manage users screen/clsUsersListScreen.h"
 #include "../manage users screen/clsAddNewUserScreen.h"
 #include "../manage users screen/clsDeleteUserScreen.h"
+#include "../manage users screen/clsUpdateUserScreen.h"
 
 using namespace std;
 
