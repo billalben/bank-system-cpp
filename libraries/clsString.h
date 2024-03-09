@@ -51,10 +51,10 @@ public:
     while ((pos = S1.find(Delim)) != std::string::npos)
     {
       sWord = S1.substr(0, pos);
+
       if (sWord != "")
-      {
         Counter++;
-      }
+
       S1.erase(0, pos + Delim.length());
     }
 
@@ -80,9 +80,7 @@ public:
     for (short i = 0; i < Text.length(); i++)
     {
       if (Text[i] != ' ' && isFirstLetter)
-      {
         cout << Text[i] << endl;
-      }
 
       isFirstLetter = (Text[i] != ' ' ? true : false);
     }
@@ -100,9 +98,7 @@ public:
     for (short i = 0; i < S1.length(); i++)
     {
       if (S1[i] != ' ' && isFirstLetter)
-      {
         S1[i] = toupper(S1[i]);
-      }
 
       isFirstLetter = (S1[i] == ' ' ? true : false);
     }
@@ -123,9 +119,7 @@ public:
     for (short i = 0; i < S1.length(); i++)
     {
       if (S1[i] != ' ' && isFirstLetter)
-      {
         S1[i] = tolower(S1[i]);
-      }
 
       isFirstLetter = (S1[i] == ' ' ? true : false);
     }
@@ -142,9 +136,8 @@ public:
   static string UpperAllString(string S1)
   {
     for (short i = 0; i < S1.length(); i++)
-    {
       S1[i] = toupper(S1[i]);
-    }
+
     return S1;
   }
 
@@ -156,9 +149,8 @@ public:
   static string LowerAllString(string S1)
   {
     for (short i = 0; i < S1.length(); i++)
-    {
       S1[i] = tolower(S1[i]);
-    }
+
     return S1;
   }
 
@@ -175,9 +167,8 @@ public:
   static string InvertAllLettersCase(string S1)
   {
     for (short i = 0; i < S1.length(); i++)
-    {
       S1[i] = InvertLetterCase(S1[i]);
-    }
+
     return S1;
   }
 
@@ -196,9 +187,7 @@ public:
   static short CountLetters(string S1, enWhatToCount WhatToCount = enWhatToCount::All)
   {
     if (WhatToCount == enWhatToCount::All)
-    {
       return S1.length();
-    }
 
     short Counter = 0;
 
@@ -267,6 +256,7 @@ public:
           Counter++;
       }
     }
+
     return Counter;
   }
 
@@ -290,6 +280,7 @@ public:
       if (IsVowel(S1[i]))
         Counter++;
     }
+
     return Counter;
   }
 
@@ -309,18 +300,15 @@ public:
     while ((pos = S1.find(Delim)) != std::string::npos)
     {
       sWord = S1.substr(0, pos); // store the word
+
       if (sWord != "")
-      {
         vString.push_back(sWord);
-      }
 
       S1.erase(0, pos + Delim.length()); /* erase() until position and move to next word. */
     }
 
     if (S1 != "")
-    {
       vString.push_back(S1); // it adds last word of the string.
-    }
 
     return vString;
   }
@@ -335,10 +323,9 @@ public:
     for (short i = 0; i < S1.length(); i++)
     {
       if (S1[i] != ' ')
-      {
         return S1.substr(i, S1.length() - i);
-      }
     }
+
     return "";
   }
 
@@ -352,10 +339,9 @@ public:
     for (short i = S1.length() - 1; i >= 0; i--)
     {
       if (S1[i] != ' ')
-      {
         return S1.substr(0, i + 1);
-      }
     }
+
     return "";
   }
 
@@ -379,9 +365,7 @@ public:
     string S1 = "";
 
     for (string &s : vString)
-    {
       S1 = S1 + s + Delim;
-    }
 
     return S1.substr(0, S1.length() - Delim.length());
   }
@@ -391,9 +375,7 @@ public:
     string S1 = "";
 
     for (short i = 0; i < Length; i++)
-    {
       S1 = S1 + arrString[i] + Delim;
-    }
 
     return S1.substr(0, S1.length() - Delim.length());
   }
@@ -433,16 +415,12 @@ public:
       if (MatchCase)
       {
         if (s == StringToReplace)
-        {
           s = sReplaceTo;
-        }
       }
       else
       {
         if (LowerAllString(s) == LowerAllString(StringToReplace))
-        {
           s = sReplaceTo;
-        }
       }
     }
 
@@ -462,9 +440,7 @@ public:
     for (short i = 0; i < S1.length(); i++)
     {
       if (!ispunct(S1[i]))
-      {
         S2 += S1[i];
-      }
     }
 
     return S2;
