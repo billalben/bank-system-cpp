@@ -123,6 +123,7 @@ private:
       _GoBackToMainMenu();
       break;
     }
+    
     case enMainMenuOptions::eAddNewClient:
       system("clear");
       _ShowAddNewClientsScreen();

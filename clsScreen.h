@@ -3,21 +3,27 @@
 #include <iostream>
 #include "Global.h"
 #include "./important classes/clsUser.h"
+#include "./libraries/clsDate.h"
 
 using namespace std;
 
 class clsScreen
 {
 protected:
-  static void _DrawScreenHeader(string Title, string SubTitle = "")
+  static void _DrawScreenHeader(string Title, string SubTitle = "", bool showDateAndUserName = true)
   {
     cout << "___________________________________________";
     cout << "\n\n  " << Title;
-
     if (SubTitle != "")
       cout << "\n  " << SubTitle;
 
     cout << "\n___________________________________________\n\n";
+
+    if (showDateAndUserName)
+    {
+      cout << "User: " << CurrentUser.GetUserName() << endl;
+      cout << "Date: " << clsDate::DateToString(clsDate()) << endl << endl;
+    }
   }
 
   static bool CheckAccessRights(clsUser::enPermissions Permission)
