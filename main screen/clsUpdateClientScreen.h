@@ -8,7 +8,6 @@
 #include "../libraries/clsInputValidate.h"
 
 class clsUpdateClientScreen : protected clsScreen
-
 {
 private:
   static void _PrintClient(clsBankClient Client)
@@ -50,6 +49,8 @@ private:
 public:
   static void ShowUpdateClientScreen()
   {
+    if (!CheckAccessRights(clsUser::enPermissions::pUpdateClients))
+      return; // this will exit the function and it will not continue
 
     _DrawScreenHeader("\tUpdate Client Screen");
 
@@ -77,7 +78,6 @@ public:
 
     if (Answer == 'y' || Answer == 'Y')
     {
-
       cout << "\n\nUpdate Client Info:";
       cout << "\n____________________\n";
 
@@ -96,11 +96,13 @@ public:
         _PrintClient(Client1);
         break;
       }
+
       case clsBankClient::enSaveResults::svFailEmptyObject:
       {
         cout << "\nError account was not saved because it's Empty";
         break;
       }
+
       default:
         break;
       }

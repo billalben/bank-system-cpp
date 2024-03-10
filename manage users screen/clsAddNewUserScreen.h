@@ -54,9 +54,7 @@ private:
     cout << "\nDo you want to give full access? y/n? ";
     cin >> Answer;
     if (Answer == 'y' || Answer == 'Y')
-    {
       return -1;
-    }
 
     cout << "\nDo you want to give access to : \n ";
 

@@ -105,6 +105,11 @@ private:
   {
     CurrentUser = clsUser::Find("", "");
     // then it will go back to main function
+
+    /*
+      you can't do circular reference here {call stack}
+      clsLoginScreen::ShowLoginScreen();
+    */
   }
 
   static void _PerformMainMenuOption(enMainMenuOptions MainMenuOption)

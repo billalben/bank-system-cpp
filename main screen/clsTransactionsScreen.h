@@ -95,6 +95,7 @@ private:
     {
       // do nothing here the main screen will handle it :-) ;
     }
+
     default:
       break;
     }
@@ -103,6 +104,9 @@ private:
 public:
   static void ShowTransactionsMenu()
   {
+    if (!CheckAccessRights(clsUser::enPermissions::pTransaction))
+      return; // this will exit the function and it will not continue
+
     system("clear");
     _DrawScreenHeader("\t  Transactions Screen");
 

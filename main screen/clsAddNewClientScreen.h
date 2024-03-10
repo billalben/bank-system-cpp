@@ -49,6 +49,8 @@ private:
 public:
   static void ShowAddNewClientScreen()
   {
+    if (!CheckAccessRights(clsUser::enPermissions::pAddNewClient))
+      return; // this will exit the function and it will not continue
 
     _DrawScreenHeader("\t  Add New Client Screen");
 
@@ -78,11 +80,13 @@ public:
       _PrintClient(NewClient);
       break;
     }
+
     case clsBankClient::enSaveResults::svFailEmptyObject:
     {
       cout << "\nError account was not saved because it's Empty";
       break;
     }
+
     case clsBankClient::enSaveResults::svFailAccountNumberExists:
     {
       cout << "\nError account was not saved because account number is used!\n";
