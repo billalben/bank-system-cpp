@@ -22,7 +22,8 @@ protected:
     if (showDateAndUserName)
     {
       cout << "User: " << CurrentUser.GetUserName() << endl;
-      cout << "Date: " << clsDate::DateToString(clsDate()) << endl << endl;
+      cout << "Date: " << clsDate::DateToString(clsDate()) << endl
+           << endl;
     }
   }
 
