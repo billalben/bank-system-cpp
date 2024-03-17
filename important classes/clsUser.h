@@ -6,9 +6,9 @@
 
 #include "clsPerson.h"
 #include "../libraries/clsString.h"
+#include "../libraries/clsDate.h"
 
 using namespace std;
-
 class clsUser : public clsPerson
 {
 private:
@@ -24,6 +24,16 @@ private:
   int _Permissions;
 
   bool _MarkedForDelete = false;
+
+  string _PrepareLogInRecord(string Separator = "#//#")
+  {
+    string LoginRecord = "";
+    LoginRecord += clsDate::GetSystemDateTimeString() + Separator;
+    LoginRecord += GetUserName() + Separator;
+    LoginRecord += GetPassword() + Separator;
+    LoginRecord += to_string(GetPermissions());
+    return LoginRecord;
+  }
 
   static clsUser _ConvertLineToUserObject(string Line, string Separator = "#//#")
   {
@@ -141,7 +151,6 @@ public:
     pTransaction = 32,
     pManageUsers = 64
   };
-
   clsUser(enMode Mode, string FirstName, string LastName,
           string Email, string Phone, string UserName, string Password,
           int Permissions) : clsPerson(FirstName, LastName, Email, Phone)
@@ -279,9 +288,6 @@ public:
       }
       break;
     }
-
-    default:
-      break;
     }
   }
 
@@ -328,5 +334,19 @@ public:
       return true;
     else
       return false;
+  }
+
+  void RegisterLogIn()
+  {
+    string stDataLine = _PrepareLogInRecord();
+
+    fstream MyFile;
+    MyFile.open("LoginRegister.txt", ios::out | ios::app); // append Mode
+
+    if (MyFile.is_open())
+    {
+      MyFile << stDataLine << endl;
+      MyFile.close();
+    }
   }
 };
