@@ -109,6 +109,13 @@ private:
     if (Answer == 'y' || Answer == 'Y')
       Permissions += clsUser::enPermissions::pManageUsers;
 
+    cout << "\nShow Login Screen? y/n? ";
+    cin >> Answer;
+    Answer = tolower(Answer);
+
+    if (Answer == 'y' || Answer == 'Y')
+      Permissions += clsUser::enPermissions::pLoginRegister;
+
     return Permissions;
   }
 

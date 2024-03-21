@@ -53,6 +53,8 @@ private:
 
     cout << "\nDo you want to give full access? y/n? ";
     cin >> Answer;
+    Answer = tolower(Answer);
+
     if (Answer == 'y' || Answer == 'Y')
       return -1;
 
@@ -106,6 +108,13 @@ private:
 
     if (Answer == 'y' || Answer == 'Y')
       Permissions += clsUser::enPermissions::pManageUsers;
+
+    cout << "\nShow Login Register ? y/n? ";
+    cin >> Answer;
+    Answer = tolower(Answer);
+
+    if (Answer == 'y' || Answer == 'Y')
+      Permissions += clsUser::enPermissions::pLoginRegister;
 
     return Permissions;
   }

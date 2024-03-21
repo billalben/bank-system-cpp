@@ -150,7 +150,8 @@ public:
     pUpdateClients = 8,
     pFindClient = 16,
     pTransaction = 32,
-    pManageUsers = 64
+    pManageUsers = 64,
+    pLoginRegister = 128
   };
 
   struct stLoginRegisterRecord

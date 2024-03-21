@@ -13,6 +13,7 @@ class clsLoginRegisterScreen : protected clsScreen
 private:
   static void PrintLoginRegisterRecordLine(clsUser::stLoginRegisterRecord LoginRegisterRecord)
   {
+
     cout << "| " << setw(35) << left << LoginRegisterRecord.DateTime;
     cout << "| " << setw(20) << left << LoginRegisterRecord.UserName;
     cout << "| " << setw(20) << left << LoginRegisterRecord.Password;
@@ -22,6 +23,9 @@ private:
 public:
   static void ShowLoginRegisterScreen()
   {
+    if (!CheckAccessRights(clsUser::enPermissions::pLoginRegister))
+      return; // this will exit the function and it will not continue
+
     vector<clsUser::stLoginRegisterRecord> vLoginRegisterRecord = clsUser::GetLoginRegisterList();
 
     string Title = "\tLogin Register List Screen";
