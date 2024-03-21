@@ -12,6 +12,7 @@
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
 #include "clsManageUsers.h"
+#include "clsLoginRegisterScreen.h"
 #include "../Global.h"
 
 using namespace std;
@@ -28,27 +29,26 @@ private:
     eFindClient = 5,
     eShowTransactionsMenu = 6,
     eManageUsers = 7,
-    eExit = 8
+    eLoginRegister = 8,
+    eExit = 9
   };
 
   static short _ReadMainMenuOption()
   {
-    cout << "Choose what do you want to do? [1 to 8]? ";
-    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 8, "Enter Number between 1 to 8? ");
+    cout << "Choose what do you want to do? [1 to 9]? ";
+    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 9, "Enter Number between 1 to 8: ");
     return Choice;
   }
 
   static void _GoBackToMainMenu()
   {
     char Choice = 'y';
-    cout << "\n\nPress key 'y' to go back to main menu... ";
+    cout << "\n\nPress key 'y' to go back to main menu...";
     cin >> Choice;
-
-    Choice = tolower(Choice);
     while (Choice != 'y')
     {
       cout << setw(37) << left << ""
-           << "\nPress key 'y' to go back to main menu... ";
+           << "\nPress key 'y' to go back to main menu...";
       cin >> Choice;
     }
     ShowMainMenu();
@@ -101,14 +101,20 @@ private:
   //     cout << "\nEnd Screen Will be here...\n";
   // }
 
+  static void _ShowLoginRegisterMenu()
+  {
+    // cout << "\nUsers Menu Will be here...\n";
+    clsLoginRegisterScreen::ShowLoginRegisterScreen();
+  }
+
   static void _Logout()
   {
     CurrentUser = clsUser::Find("", "");
     // then it will go back to main function
 
     /*
-      you can't do circular reference here {call stack}
-      clsLoginScreen::ShowLoginScreen();
+    you can't do circular reference here {call stack}
+    //clsLoginScreen::ShowLoginScreen();
     */
   }
 
@@ -123,7 +129,6 @@ private:
       _GoBackToMainMenu();
       break;
     }
-    
     case enMainMenuOptions::eAddNewClient:
       system("clear");
       _ShowAddNewClientsScreen();
@@ -160,6 +165,12 @@ private:
       _GoBackToMainMenu();
       break;
 
+    case enMainMenuOptions::eLoginRegister:
+      system("clear");
+      _ShowLoginRegisterMenu();
+      _GoBackToMainMenu();
+      break;
+
     case enMainMenuOptions::eExit:
       system("clear");
       //_ShowEndScreen();
@@ -187,7 +198,8 @@ public:
     cout << "\t[5] Find Client.\n";
     cout << "\t[6] Transactions.\n";
     cout << "\t[7] Manage Users.\n";
-    cout << "\t[8] Logout.\n";
+    cout << "\t[8] Login Register.\n";
+    cout << "\t[9] Logout.\n";
     cout << "===========================================\n";
 
     _PerformMainMenuOption((enMainMenuOptions)_ReadMainMenuOption());
