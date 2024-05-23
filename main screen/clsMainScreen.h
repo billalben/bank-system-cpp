@@ -36,7 +36,7 @@ private:
   static short _ReadMainMenuOption()
   {
     cout << "Choose what do you want to do? [1 to 9]? ";
-    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 9, "Enter Number between 1 to 8: ");
+    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 9, "Enter Number between 1 to 9: ");
     return Choice;
   }
 
