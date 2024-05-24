@@ -11,11 +11,12 @@
 #include "../transactions screen/clsTotalBalancesScreen.h"
 #include "../transactions screen/clsTransferScreen.h"
 
+#include "../transactions screen/clsTransferLogScreen.h"
+
 using namespace std;
 
 class clsTransactionsScreen : protected clsScreen
 {
-
 private:
   enum enTransactionsMenuOptions
   {
@@ -23,13 +24,14 @@ private:
     eWithdraw = 2,
     eShowTotalBalance = 3,
     eTransfer = 4,
-    eShowMainMenu = 5
+    eTransferLog = 5,
+    eShowMainMenu = 6
   };
 
   static short ReadTransactionsMenuOption()
   {
-    cout << "Choose what do you want to do? [1 to 5]? ";
-    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 5, "Enter Number between 1 to 5? ");
+    cout << "Choose what do you want to do? [1 to 6]? ";
+    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 6, "Enter Number between 1 to 6? ");
     return Choice;
   }
 
@@ -55,6 +57,12 @@ private:
   {
     // cout << "\n Transfer Screen will be here.\n";
     clsTransferScreen::ShowTransferScreen();
+  }
+
+  static void _ShowTransferLogScreen()
+  {
+    // cout << "\n Transfer Screen will be here.\n";
+    clsTransferLogScreen::ShowTransferLogScreen();
   }
 
   static void _GoBackToTransactionsMenu()
@@ -106,6 +114,14 @@ private:
       break;
     }
 
+    case enTransactionsMenuOptions::eTransferLog:
+    {
+      system("clear");
+      _ShowTransferLogScreen();
+      _GoBackToTransactionsMenu();
+      break;
+    }
+
     case enTransactionsMenuOptions::eShowMainMenu:
     {
       // do nothing here the main screen will handle it :-) ;
@@ -119,6 +135,7 @@ private:
 public:
   static void ShowTransactionsMenu()
   {
+
     if (!CheckAccessRights(clsUser::enPermissions::pTransaction))
     {
       return; // this will exit the function and it will not continue
@@ -134,7 +151,8 @@ public:
     cout << "\t[2] Withdraw.\n";
     cout << "\t[3] Total Balances.\n";
     cout << "\t[4] Transfer.\n";
-    cout << "\t[5] Main Menu.\n";
+    cout << "\t[5] Transfer Log.\n";
+    cout << "\t[6] Main Menu.\n";
     cout << "===========================================\n";
 
     _PerformTransactionsMenuOption((enTransactionsMenuOptions)ReadTransactionsMenuOption());
