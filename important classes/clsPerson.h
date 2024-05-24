@@ -3,9 +3,11 @@
 #include <iostream>
 #include <string>
 
+#include "../InterfaceCommunication.h"
+
 using namespace std;
 
-class clsPerson
+class clsPerson : public InterfaceCommunication
 {
 private:
   string _FirstName;
@@ -65,5 +67,17 @@ public:
   string FullName()
   {
     return _FirstName + " " + _LastName;
+  }
+
+  void SendEmail(string Title, string Body)
+  {
+  }
+
+  void SendFax(string Title, string Body)
+  {
+  }
+
+  void SendSMS(string Title, string Body)
+  {
   }
 };
