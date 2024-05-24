@@ -3,13 +3,13 @@
 #include <iostream>
 
 #include "../clsScreen.h"
+#include "../Global.h"
 #include "../important classes/clsPerson.h"
 #include "../important classes/clsBankClient.h"
 #include "../libraries/clsInputValidate.h"
 
 class clsTransferScreen : protected clsScreen
 {
-
 private:
   static void _PrintClient(clsBankClient Client)
   {
@@ -70,13 +70,13 @@ public:
     cin >> Answer;
     if (Answer == 'Y' || Answer == 'y')
     {
-      if (SourceClient.Transfer(Amount, DestinationClient))
+      if (SourceClient.Transfer(Amount, DestinationClient, CurrentUser.GetUserName()))
       {
         cout << "\nTransfer done successfully\n";
       }
       else
       {
-        cout << "\nTransfer Fail \n";
+        cout << "\nTransfer Fail\n";
       }
     }
 
