@@ -15,10 +15,13 @@
 #include "clsLoginRegisterScreen.h"
 #include "../Global.h"
 
+#include "clsCurrencyExchangeMainScreen.h"
+
 using namespace std;
 
 class clsMainScreen : protected clsScreen
 {
+
 private:
   enum enMainMenuOptions
   {
@@ -30,13 +33,14 @@ private:
     eShowTransactionsMenu = 6,
     eManageUsers = 7,
     eLoginRegister = 8,
-    eExit = 9
+    eCurrencyExchange = 9,
+    eExit = 10
   };
 
   static short _ReadMainMenuOption()
   {
-    cout << "Choose what do you want to do? [1 to 9]? ";
-    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 9, "Enter Number between 1 to 9: ");
+    cout << "Choose what do you want to do? [1 to 10]? ";
+    short Choice = clsInputValidate::ReadNumberBetween<short>(1, 10, "Enter Number between 1 to 10: ");
     return Choice;
   }
 
@@ -47,8 +51,7 @@ private:
     cin >> Choice;
     while (Choice != 'y')
     {
-      cout << setw(37) << left << ""
-           << "\nPress key 'y' to go back to main menu...";
+      cout << setw(37) << left << "" << "\nPress key 'y' to go back to main menu...";
       cin >> Choice;
     }
     ShowMainMenu();
@@ -107,15 +110,18 @@ private:
     clsLoginRegisterScreen::ShowLoginRegisterScreen();
   }
 
+  static void _ShowCurrencyExchangeMainScreen()
+  {
+    clsCurrencyExchangeMainScreen::ShowCurrenciesMenu();
+  }
+
   static void _Logout()
   {
     CurrentUser = clsUser::Find("", "");
     // then it will go back to main function
 
-    /*
-    you can't do circular reference here {call stack}
-    //clsLoginScreen::ShowLoginScreen();
-    */
+    // you can't do circular reference here {call stack}
+    // clsLoginScreen::ShowLoginScreen();
   }
 
   static void _PerformMainMenuOption(enMainMenuOptions MainMenuOption)
@@ -171,6 +177,12 @@ private:
       _GoBackToMainMenu();
       break;
 
+    case enMainMenuOptions::eCurrencyExchange:
+      system("clear");
+      _ShowCurrencyExchangeMainScreen();
+      _GoBackToMainMenu();
+      break;
+
     case enMainMenuOptions::eExit:
       system("clear");
       //_ShowEndScreen();
@@ -199,7 +211,8 @@ public:
     cout << "\t[6] Transactions.\n";
     cout << "\t[7] Manage Users.\n";
     cout << "\t[8] Login Register.\n";
-    cout << "\t[9] Logout.\n";
+    cout << "\t[9] Currency Exchange.\n";
+    cout << "\t[10] Logout.\n";
     cout << "===========================================\n";
 
     _PerformMainMenuOption((enMainMenuOptions)_ReadMainMenuOption());
