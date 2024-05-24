@@ -5,6 +5,7 @@
 
 #include "../clsScreen.h"
 #include "../libraries/clsInputValidate.h"
+#include "../currency exchange/clsCurrenciesListScreen.h"
 
 using namespace std;
 
@@ -43,7 +44,8 @@ private:
 
   static void _ShowCurrenciesListScreen()
   {
-    cout << "\nCurrencies List Screen Will Be Here.\n";
+    // cout << "\nCurrencies List Screen Will Be Here.\n";
+    clsCurrenciesListScreen::ShowCurrenciesListScreen();
   }
 
   static void _ShowFindCurrencyScreen()
@@ -63,7 +65,6 @@ private:
 
   static void _PerformCurrenciesMainMenuOptions(enCurrenciesMainMenuOptions CurrenciesMainMenuOptions)
   {
-
     switch (CurrenciesMainMenuOptions)
     {
     case enCurrenciesMainMenuOptions::eListCurrencies:
@@ -108,7 +109,6 @@ private:
 public:
   static void ShowCurrenciesMenu()
   {
-
     system("clear");
     _DrawScreenHeader("    Currency Exchange Main Screen");
 
