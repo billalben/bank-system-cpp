@@ -82,7 +82,7 @@ public:
       if (Text[i] != ' ' && isFirstLetter)
         cout << Text[i] << endl;
 
-      isFirstLetter = (Text[i] != ' ' ? true : false);
+      isFirstLetter = (Text[i] == ' ' ? true : false);
     }
   }
 
@@ -434,7 +434,6 @@ public:
 
   static string RemovePunctuations(string S1)
   {
-
     string S2 = "";
 
     for (short i = 0; i < S1.length(); i++)
